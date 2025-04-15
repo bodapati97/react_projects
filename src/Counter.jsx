@@ -1,6 +1,22 @@
 import React from 'react'
 import "./Counter.css"
+import { useState } from 'react';
+
+
 const Counter = () => {
+    const [counter,setCounter] = useState(0);
+
+    const increaseCounter = () =>{
+        if(counter<10)
+            {
+        setCounter(counter+1)
+            }
+    }
+
+    const decreaseCounter = () =>{
+        if(counter>0){
+        setCounter(counter-1)}
+    }
   return (
     <div>
         
@@ -19,7 +35,7 @@ const Counter = () => {
             color: "#200020",
             }}>
             Counter:
-            <span>0</span>
+            <span>{counter}</span>
             </p>
     </div>
 
@@ -30,13 +46,17 @@ const Counter = () => {
         gap: "1rem",
         }}
     >
-        <button className="button" style={{
+        <button className="button"
+        onClick={increaseCounter}
+        style={{
             fontSize: "2rem",
             background : "green",
             color: "white",
             padding: "2rem",
             }} >Increase</button>
-        <button className="button" style={{
+        <button className="button"
+        onClick={decreaseCounter}
+        style={{
             fontSize: "2rem",
             background : "red",
             color: "white",
@@ -44,8 +64,21 @@ const Counter = () => {
             }}>Decrease</button>
     
     </div>
-
+    
+    <div>
+        {counter>=10?
+        <h2 className="alert" 
+        style={{color:"red"}}>This Counter is above Max limit</h2>:<div></div>}
     </div>
+
+    <div>
+        {counter<=0?
+        <h2 className="alert"
+        style={{color:"green"}}>This Counter can't be decre</h2>:<div></div>}
+
+    </div>        
+    </div>
+
 
 
 
